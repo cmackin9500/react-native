@@ -2,9 +2,13 @@ import React, { useEffect } from "react";
 import { SafeAreaView, StyleSheet, Text } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Home from "./screens/home";
 import { globalStyles } from "./styles/global";
+import Home from "./screens/home";
+import About from "./screens/about";
+import ReviewDetails from "./screens/reviewDetails";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,10 +30,15 @@ export default function App() {
     SplashScreen.hideAsync();
   }
 
+  const Stack = createNativeStackNavigator();
+
   return (
-    <SafeAreaView>
-      <Text style={globalStyles.titleText}>Hey</Text>
-      <Home style={globalStyles.container} />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="About" component={About} />
+        <Stack.Screen name="Review Detail" component={ReviewDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
