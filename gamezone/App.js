@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet, Text } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
 import Home from "./screens/home";
+import { globalStyles } from "./styles/global";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -27,14 +28,8 @@ export default function App() {
 
   return (
     <SafeAreaView>
-      <Home style={styles.container} />
+      <Text style={globalStyles.titleText}>Hey</Text>
+      <Home style={globalStyles.container} />
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 40,
-    fontFamily: "rubik-italic",
-  },
-});
