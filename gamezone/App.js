@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { Button, SafeAreaView, StyleSheet, Text } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -34,8 +34,26 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: "Select a player",
+            headerStyle: {
+              backgroundColor: "#6a51ae",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: { fontWeight: "bold" },
+            headerLeft: () => (
+              <Button
+                title="About"
+                color="white"
+                onPress={() => alert("there ain't no about")}
+              />
+            ),
+          }}
+        />
         <Stack.Screen name="About" component={About} />
         <Stack.Screen name="Review Detail" component={ReviewDetails} />
       </Stack.Navigator>

@@ -3,10 +3,11 @@ import { StyleSheet, View, Text } from "react-native";
 
 import { globalStyles } from "../styles/global";
 
-export default function ReviewDetails() {
+export default function ReviewDetails({ route, navigation }) {
+  const { name, foot, height } = route.params;
   return (
     <View style={globalStyles.container}>
-      <Text>Review Details</Text>
+      <Text>{name}</Text>
     </View>
   );
 }
