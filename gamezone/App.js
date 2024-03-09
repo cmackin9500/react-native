@@ -45,17 +45,15 @@ export default function App() {
             },
             headerTintColor: "#fff",
             headerTitleStyle: { fontWeight: "bold" },
-            headerLeft: () => (
-              <Button
-                title="About"
-                color="white"
-                onPress={() => alert("there ain't no about")}
-              />
-            ),
+            headerLeft: () => <Button title="About" color="white" />,
           }}
         />
         <Stack.Screen name="About" component={About} />
-        <Stack.Screen name="Review Detail" component={ReviewDetails} />
+        <Stack.Screen
+          name="Review Detail"
+          component={ReviewDetails}
+          options={({ route }) => ({ title: route.params.name })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
