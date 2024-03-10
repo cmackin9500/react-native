@@ -1,14 +1,20 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { useNavigation, DrawerActions } from "@react-navigation/native";
 
 import { MaterialIcons } from "@expo/vector-icons";
 
-export default function Header() {
+export default function Header({ navigation }) {
   return (
     <View style={StyleSheet.header}>
-      {}
+      <MaterialIcons
+        name="menu"
+        size={28}
+        onPress={openMenu}
+        style={styles.icon}
+      />
       <View>
-        <Text style={styles.headerText}>GamaeZone</Text>
+        <Text style={styles.headerText}>Players</Text>
       </View>
     </View>
   );
@@ -21,12 +27,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "red",
   },
   headerText: {
     fontWeight: "bold",
     fontSize: 20,
-    color: "#333",
+    color: "#white",
     letterSpacing: 1,
+  },
+  icon: {
+    position: "relative",
   },
 });
