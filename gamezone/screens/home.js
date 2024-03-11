@@ -12,9 +12,9 @@ import Card from "./../shared/card";
 
 export default function Home({ navigation }) {
   const [players, setPlayers] = useState([
-    { name: "Kulusevski", foot: "Left", Height: "6.1", key: 1 },
-    { name: "Madders", foot: "Right", Height: "5.9", key: 2 },
-    { name: "Micky", foot: "Left", Height: "6.4", key: 3 },
+    { name: "Kulusevski", foot: "Left", Height: "6.1", rating: 3, key: 1 },
+    { name: "Madders", foot: "Right", Height: "5.9", rating: 4, key: 2 },
+    { name: "Micky", foot: "Left", Height: "6.4", rating: 5, key: 3 },
   ]);
 
   return (
