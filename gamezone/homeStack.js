@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
+import { ImageBackground, StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  useNavigation,
+  DefaultTheme,
+} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Icon from "react-native-vector-icons/Entypo";
 
@@ -31,6 +36,13 @@ export default function HomeStack() {
 
   const navigation = useNavigation();
   const Stack = createNativeStackNavigator();
+  const MyTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: "transparent",
+    },
+  };
 
   return (
     <NavigationContainer independent={true}>

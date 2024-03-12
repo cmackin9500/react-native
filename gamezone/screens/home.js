@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import {
   StyleSheet,
+  Image,
   View,
   Text,
   FlatList,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 
 import { globalStyles } from "../styles/global";
@@ -38,3 +40,12 @@ export default function Home({ navigation }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    // remove width and height to override fixed static size
+    width: null,
+    height: null,
+  },
+});
