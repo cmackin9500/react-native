@@ -6,12 +6,14 @@ import {
   FlatList,
   TouchableOpacity,
   Modal,
+  Keyboard,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { globalStyles } from "../styles/global";
 import Card from "./../shared/card";
 import ReviewForm from "./reviewForm";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 export default function Home({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -21,19 +23,29 @@ export default function Home({ navigation }) {
     { name: "Micky", foot: "Left", Height: "6.4", rating: 5, key: 3 },
   ]);
 
+  const addReview = (players) => {
+    players.key = Math.random().toString();
+    setPlayers((currentPlayers) => {
+      return [players, ...currentPlayers];
+    });
+    setModalOpen(false);
+  };
+
   return (
     <View style={globalStyles.container}>
-      <Modal visible={modalOpen} animationType="slide">
-        <View style={styles.modalContent}>
-          <MaterialIcons
-            name="close"
-            size={24}
-            style={{ ...styles.modalToggle, ...styles.modalClose }}
-            onPress={() => setModalOpen(false)}
-          />
-          <ReviewForm />
-        </View>
-      </Modal>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Modal visible={modalOpen} animationType="slide">
+          <View style={styles.modalContent}>
+            <MaterialIcons
+              name="close"
+              size={24}
+              style={{ ...styles.modalToggle, ...styles.modalClose }}
+              onPress={() => setModalOpen(false)}
+            />
+            <ReviewForm addReview={addReview} />
+          </View>
+        </Modal>
+      </TouchableWithoutFeedback>
 
       <MaterialIcons
         name="add"
