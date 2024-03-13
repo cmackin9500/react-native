@@ -15,6 +15,13 @@ export const globalStyles = StyleSheet.create({
     lineHeight: 20,
     fontFamily: "rubik-regular",
   },
+  input: {
+    borderWidth: 1,
+    borderColor: "#c9ccd6",
+    padding: 10,
+    fontSize: 18,
+    borderRadius: 6,
+  },
 });
 
 export const images = {
