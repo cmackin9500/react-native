@@ -22,6 +22,21 @@ export const globalStyles = StyleSheet.create({
     fontSize: 18,
     borderRadius: 6,
   },
+  foot: {
+    borderWidth: 1,
+    borderColor: "#c9ccd6",
+    fontSize: 18,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: "100%",
+    display: "flex",
+  },
+  footButton: {
+    borderWidth: 5,
+    borderColor: "#c9ccd6",
+    borderLeftWidth: 5,
+    borderRightColor: 5,
+  },
 });
 
 export const images = {
