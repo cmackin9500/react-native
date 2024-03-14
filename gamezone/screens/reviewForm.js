@@ -4,7 +4,9 @@ import { globalStyles } from "../styles/global";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { TouchableOpacity } from "react-native-gesture-handler";
+
 import FootCard from "../shared/footCard";
+import FlatButton from "../shared/button";
 
 const reviewSchema = yup.object({
   name: yup.string().required().min(2),
@@ -100,7 +102,7 @@ export default function ReviewForm({ addReview }) {
               {props.touched.rating && props.errors.rating}
             </Text>
 
-            <Button title="Add" color="#132257" onPress={props.handleSubmit} />
+            <FlatButton text="submit" onPress={props.handleSubmit} />
           </View>
         )}
       </Formik>
