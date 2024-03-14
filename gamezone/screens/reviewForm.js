@@ -59,13 +59,22 @@ export default function ReviewForm({ addReview }) {
               placeholder="Player Name"
               onChangeText={props.handleChange("name")}
               value={props.values.name}
+              onBlur={props.handleBlur("name")}
             />
+            <Text style={globalStyles.errorText}>
+              {props.touched.name && props.errors.name}
+            </Text>
+
             <TextInput
               style={globalStyles.input}
               placeholder="Foot"
               onChangeText={props.handleChange("foot")}
               value={props.values.foot}
+              onBlur={props.handleBlur("foot")}
             />
+            <Text style={globalStyles.errorText}>
+              {props.touched.height && props.errors.height}
+            </Text>
 
             <FootCard></FootCard>
 
@@ -74,14 +83,22 @@ export default function ReviewForm({ addReview }) {
               placeholder="Height"
               onChangeText={props.handleChange("height")}
               value={props.values.height}
+              onBlur={props.handleBlur("height")}
             />
+            <Text style={globalStyles.errorText}>
+              {props.touched.height && props.errors.height}
+            </Text>
             <TextInput
               style={globalStyles.input}
               placeholder="Rating (1-5)"
               onChangeText={props.handleChange("rating")}
               value={props.values.rating}
               keyboardType="numeric"
+              onBlur={props.handleBlur("rating")}
             />
+            <Text style={globalStyles.errorText}>
+              {props.touched.rating && props.errors.rating}
+            </Text>
 
             <Button title="Add" color="#132257" onPress={props.handleSubmit} />
           </View>
