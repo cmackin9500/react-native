@@ -4,32 +4,49 @@ import { globalStyles } from "../styles/global";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import FootCard from "../shared/footCard";
 
-const ReviewSchema = yup.object({
+const reviewSchema = yup.object({
   name: yup.string().required().min(2),
+  foot: yup
+    .string()
+    .required()
+    .test("valid-foot", "Must be Left or Right", (val) => {
+      return val === "Left" || val === "Right";
+    }),
+  height: yup
+    .string()
+    .required()
+    .test("valid-height", "Height must be between 4 feet to 8 feet", (val) => {
+      return parseFloat(val) <= 8 && parseFloat(val) >= 4;
+    }),
+  rating: yup
+    .string()
+    .required()
+    .test("valid-rating", "Rating must be 1-5", (val) => {
+      return parseInt(val) >= 1 && parseInt(val) <= 5;
+    }),
 });
 
 export default function ReviewForm({ addReview }) {
-  const [leftFoot, setLeftFoot] = useState(false);
-  const [rightFoot, setRightFoot] = useState(false);
+  const [leftPressed, setLeftPressed] = useState(false);
+  const [rightPressed, setRightPressed] = useState(false);
 
-  const onLeftPress = () => {
-    setLeftFoot(true);
-    setRightFoot(false);
-  };
-  const onRightPress = () => {
-    setLeftFoot(false);
-    setRightFoot(true);
+  const handleLeftPress = () => {
+    setLeftPressed(true);
+    setRightPressed(false);
   };
 
-  useEffect(() => {
-    onRightPress();
-  }, [leftFoot]);
+  const handleRightPress = () => {
+    setRightPressed(true);
+    setLeftPressed(false);
+  };
 
   return (
     <View style={globalStyles.container}>
       <Formik
         initialValues={{ name: "", foot: "", height: "", rating: "" }}
+        validationSchema={reviewSchema}
         onSubmit={(values, actions) => {
           actions.resetForm();
           addReview(values);
@@ -49,20 +66,8 @@ export default function ReviewForm({ addReview }) {
               onChangeText={props.handleChange("foot")}
               value={props.values.foot}
             />
-            <View style={globalStyles.foot}>
-              <TouchableOpacity>
-                <Button
-                  title="Left"
-                  styles={globalStyles.footButton}
-                  onClick={onLeftPress()}
-                />
-              </TouchableOpacity>
-              <Button
-                title="Right"
-                styles={globalStyles.footButton}
-                onClick={onRightPress()}
-              />
-            </View>
+
+            <FootCard></FootCard>
 
             <TextInput
               style={globalStyles.input}
